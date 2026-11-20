@@ -48,6 +48,7 @@ Imagined by a human. Written with AI. Debugged through tears.
 - [Features](#features)
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
+- [Admin Panel Screenshots](#admin-panel-screenshots)
 - [Quick start](#quick-start)
 - [Accessing SeekSonic from other devices](#accessing-seeksonic-from-other-devices)
 - [Configure your Subsonic client](#configure-your-subsonic-client)
@@ -154,6 +155,22 @@ Lyric matches are added on the first results page (`songOffset=0`). Requests for
 - A Subsonic-compatible client that sends server-side `search2` or `search3` requests to use lyric search
 
 The Navidrome URL must be reachable **from inside the SeekSonic container**. `localhost` inside the container refers to the container itself, not the host or another container.
+
+## Admin Panel Screenshots
+
+SeekSonic includes a web-based dashboard for monitoring the proxy and managing its configuration.
+
+### Login Page
+![SeekSonic Settings](docs/screenshots/login.png)
+
+### Dashboard
+![SeekSonic Dashboard](docs/screenshots/dashboard.png)
+
+### Manual Sync
+![Lyrics Database](docs/screenshots/sync.png)
+
+### Manual Search
+![Lyrics Database](docs/screenshots/manual_search.png)
 
 ## Quick start
 
