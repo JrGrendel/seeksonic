@@ -45,6 +45,7 @@ Imagined by a human. Written with AI. Debugged through tears.
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Quick start](#quick-start)
+- [Accessing SeekSonic from other devices](#accessing-seeksonic-from-other-devices)
 - [Configure your Subsonic client](#configure-your-subsonic-client)
 - [Configuration reference](#configuration-reference)
 - [Dashboard and synchronization](#dashboard-and-synchronization)
@@ -100,7 +101,7 @@ The Navidrome URL must be reachable **from inside the SeekSonic container**. `lo
 
 ## Quick start
 
-### Accessing SeekSonic from Other Devices
+### Accessing SeekSonic from other devices
 
 By default, SeekSonic binds to `127.0.0.1` on the Docker host for security. This means the proxy is only accessible from the host itself or through a reverse proxy running on the same machine.
 
