@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="SeekSonic Logo" width="220">
+</p>
+
 # SeekSonic
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
