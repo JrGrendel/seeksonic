@@ -70,16 +70,68 @@ Imagined by a human. Written with AI. Debugged through tears.
 - **Container hardening:** the supplied Compose configuration runs the proxy as a non-root user with a read-only root filesystem, dropped Linux capabilities, and resource limits.
 - **Telemetry opt-out:** Meilisearch anonymous telemetry is disabled by default.
 
-## How it works
+## How It Works
 
-```mermaid
-flowchart LR
-    C["Subsonic client"] -->|"API requests"| P["SeekSonic proxy"]
-    P -->|"normal API requests"| N[("Navidrome")]
-    P <-->|"lyric search"| M[("Meilisearch")]
-    P -. "periodic sync: read library and lyrics" .-> N
-    P -. "index and update lyrics" .-> M
+SeekSonic acts as a bridge between compatible Subsonic clients, Navidrome, and Meilisearch.
+
+```text
+                 ┌──────────────────────┐
+                 │   Subsonic Client    │
+                 │       Feishin        │
+                 └──────────┬───────────┘
+                            │
+                     Search request
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │      SeekSonic       │
+                 │    Search Proxy      │
+                 └──────────┬───────────┘
+                            │
+                  Search lyrics index
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │     Meilisearch      │
+                 │    Lyrics Index      │
+                 └──────────┬───────────┘
+                            │
+                    Matching track IDs
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │      SeekSonic       │
+                 │  Access Verification│
+                 └──────────┬───────────┘
+                            │
+                 Verify using listener's
+                    Navidrome credentials
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │      Navidrome       │
+                 │  Library Permissions │
+                 └──────────┬───────────┘
+                            │
+                     Authorized tracks
+                            │
+                            ▼
+                 ┌──────────────────────┐
+                 │   Subsonic Client    │
+                 │   Search Results     │
+                 └──────────────────────┘
 ```
+
+### Search process
+
+1. The client sends a compatible Subsonic `search2` or `search3` request to SeekSonic.
+2. SeekSonic searches the Meilisearch lyrics index for matching tracks.
+3. Matching track IDs are checked against Navidrome using the requesting listener's credentials.
+4. Only tracks the listener is authorized to access are returned.
+5. SeekSonic adds the authorized lyric matches to the normal Navidrome search response.
+
+This approach allows lyric-based discovery without bypassing Navidrome's library permissions.
+
 
 For a lyric search:
 
