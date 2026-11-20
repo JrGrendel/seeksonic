@@ -100,6 +100,31 @@ The Navidrome URL must be reachable **from inside the SeekSonic container**. `lo
 
 ## Quick start
 
+### Accessing SeekSonic from Other Devices
+
+By default, SeekSonic binds to `127.0.0.1` on the Docker host for security. This means the proxy is only accessible from the host itself or through a reverse proxy running on the same machine.
+
+If you want to access SeekSonic directly from other devices on your local network (for example, from Feishin on another computer), edit your `.env` file:
+
+```env
+PROXY_BIND=0.0.0.0
+PROXY_PORT=8788
+```
+
+Redeploy the stack, then access the proxy using the Docker host's LAN IP address:
+
+```text
+http://YOUR_SERVER_IP:8788
+```
+
+For example:
+
+```text
+http://192.168.1.100:8788
+```
+
+**Security note:** Binding to `0.0.0.0` exposes the proxy on all host network interfaces. Restrict access using your firewall and avoid exposing the port directly to the public internet. For remote access, use a properly configured reverse proxy or VPN.
+
 ### 1. Get the project files
 
 Clone this repository or download and extract its source archive. Run the following commands from the directory containing `docker-compose.yml`:
