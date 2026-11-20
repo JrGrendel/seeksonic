@@ -101,7 +101,7 @@ SeekSonic acts as a bridge between compatible Subsonic clients, Navidrome, and M
                             ▼
                  ┌──────────────────────┐
                  │      SeekSonic       │
-                 │  Access Verification│
+                 │  Access Verification │
                  └──────────┬───────────┘
                             │
                  Verify using listener's
