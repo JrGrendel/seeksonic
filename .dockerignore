@@ -1,0 +1,15 @@
+.git
+.github
+.env
+.env.*
+!.env.example
+*.db
+*.db-shm
+*.db-wal
+__pycache__
+*.py[cod]
+.venv
+venv
+.pytest_cache
+codeaudit-report.html
+SECURITY_AUDIT.md
